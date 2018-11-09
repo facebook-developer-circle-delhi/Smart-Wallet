@@ -18,4 +18,11 @@ contract SmartWallet {
 
   // This event triggers if the configuration succeeds.
   event configurationSuccessful(string msg);
+
+  // Restrict few method calls to only the
+  // owner of this smart contract.
+  modifier onlyBy(address _account) {
+    require(msg.sender == _account);
+    _;
+  }
 }
