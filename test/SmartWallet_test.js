@@ -19,7 +19,7 @@ contract('SmartWallet', (accounts) => {
 						[wallet1, wallet2]);
 			})
 			.then((data) => {
-				assert.equal(data.receipt.status, 0x1, "Success");
+				assert.equal(data.receipt.status, 0x01, "Configuration failed");
 			})
 	});
 });
