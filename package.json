@@ -1,0 +1,29 @@
+{
+  "name": "smart-wallet",
+  "version": "1.0.0",
+  "description": "An ethereum based smart contract that splits the amount sent to it.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook-developer-circle-delhi/Smart-Wallet.git"
+  },
+  "keywords": [
+    "smart",
+    "contract",
+    "blockchain",
+    "ethereum",
+    "smartwallet"
+  ],
+  "author": "Shubhamoy Chakrabarty <me@shubhamoy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet/issues"
+  },
+  "homepage": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet#readme"
+}
