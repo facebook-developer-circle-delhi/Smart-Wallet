@@ -25,4 +25,21 @@ contract SmartWallet {
     require(msg.sender == _account);
     _;
   }
+
+  // Method to configure this wallet
+  function configureShare(uint _totalWallets, uint[] _percents, address[] _walletAddress) public onlyBy(owner) {
+    totalWallets = _totalWallets;
+
+    for (uint j = 0; j < totalWallets; j++) {
+      percentageShare[j] = _percents[j];
+      walletAddress[j] = _walletAddress[j];
+    }
+
+    if (!checkPercentArray(percentageShare)) {
+      emit configurationFailure("Total percentage count is not 100.");
+      revert("Total percentage count is not 100.");
+    }
+
+    emit configurationSuccessful("Configuration Successful");
+  }
 }
