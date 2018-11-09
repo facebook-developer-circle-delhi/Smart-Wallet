@@ -16,6 +16,7 @@ App = {
     
     web3 = new Web3(App.web3Provider);
     App.displayAccountInfo();
+    return App.initContract();
   },
   
   displayAccountInfo: () => {
@@ -29,6 +30,13 @@ App = {
           }
         })
       }
+    })
+  },
+  
+  initContract: () => {
+    $.getJSON('SmartWallet.json', (smartWalletArtifact) => {
+      App.contracts.SmartWallet = TruffleContract(smartWalletArtifact);
+      App.contracts.SmartWallet.setProvider(App.web3Provider);
     })
   },
 
