@@ -37,7 +37,32 @@ App = {
     $.getJSON('SmartWallet.json', (smartWalletArtifact) => {
       App.contracts.SmartWallet = TruffleContract(smartWalletArtifact);
       App.contracts.SmartWallet.setProvider(App.web3Provider);
+      return App.getConfiguration();
     })
+  },
+  
+  getConfiguration: async () => {
+    App.contracts.SmartWallet.deployed()
+      .then((instance) => {
+        return instance.getConfiguration({from : App.account, gas: 500000});
+      })
+      .then((data) => {
+        let wallets = data[2].toNumber();
+        if (wallets !== 0) {
+          let percent = data[0];
+          let address = data[1];
+
+          for (let i = 0; i < wallets; i++) {
+            $("#configTable > tbody")
+              .append("<tr><td>"+data[1][i]+"</td><td>"+data[0][i]+"%</td></tr>");
+          }
+
+          $("#config").show();
+        } else {
+          $("#config").hide();
+        }
+        
+      });
   },
 
 };
