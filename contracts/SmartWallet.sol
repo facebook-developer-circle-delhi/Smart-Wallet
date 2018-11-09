@@ -1,6 +1,9 @@
 pragma solidity 0.4.24;
 
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+
 contract SmartWallet {
+	using SafeMath for uint;
 	address public owner = msg.sender;
   
 	// I am assuming there wouldn't be more than 20 wallets.
