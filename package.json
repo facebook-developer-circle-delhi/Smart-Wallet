@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet#readme",
   "dependencies": {
-    "openzeppelin-solidity": "^2.0.0"
+    "openzeppelin-solidity": "^2.0.0",
+    "solium": "^1.1.8"
   }
 }
