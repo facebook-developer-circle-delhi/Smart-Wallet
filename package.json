@@ -29,5 +29,8 @@
   "dependencies": {
     "openzeppelin-solidity": "^2.0.0",
     "solium": "^1.1.8"
+  },
+  "devDependencies": {
+    "lite-server": "^2.4.0"
   }
 }
