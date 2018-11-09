@@ -64,6 +64,20 @@ App = {
         
       });
   },
+  
+  addWallet: () => {
+    var num = $("#wallets > div").length/2;
+    $('#wallets').append('<div class="form-group"><label for="w'+num+'">Wallet address</label> <input type="text" class="form-control" id="w'+num+'" name="walletAddress[]" placeholder="Enter the ethereum wallet address"></div> &nbsp; <div class="form-group"><label for="p'+num+'">Wallet share(%)</label> <input type="number" class="form-control" id="p'+num+'" placeholder="Enter the percent share" max="100" pattern="[0-9]+([\.,][0-9]+)?" step="5"></div> <hr>');
+  },
+
+  removeWallet: () => {
+    var num = $("#wallets > div").length;
+    if (num > 3) {
+      $('#wallets > div').slice(-2).remove();
+    } else {
+      return false;
+    }
+  },
 
 };
 
