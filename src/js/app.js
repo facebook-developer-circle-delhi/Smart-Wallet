@@ -114,6 +114,21 @@ App = {
       return false;
     }
   },
+  
+  isNotContractAddress: async (address) => {
+    let check = await App.contracts.SmartWallet.deployed()
+      .then((instance) => {
+        return instance.isContractAddress(address, {from : App.account, gas: 500000});
+      })
+      .then((data) => {
+        if (data === false) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return check;
+  },
 
   
   addWallet: () => {
