@@ -65,4 +65,16 @@ contract SmartWallet {
   function getConfiguration() public view onlyBy(owner) returns(uint[20], address[20], uint) {
     return (percentageShare, walletAddress, totalWallets);
   }
+
+  // Method to receive the amount and immediately transfer
+  // it to the wallets configured based on the percentage.
+  function() public payable {
+    require(totalWallets != 0);
+    uint amount = msg.value;
+
+    for (uint i = 0; i < totalWallets; i++) {
+      emit Deposited(walletAddress[i], percentageShare[i], amount.mul(percentageShare[i]).div(100), amount);
+      walletAddress[i].transfer(amount.mul(percentageShare[i]).div(100));
+    }
+  }
 }
