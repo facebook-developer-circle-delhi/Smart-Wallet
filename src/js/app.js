@@ -129,7 +129,14 @@ App = {
       });
       return check;
   },
-
+  
+  validatePercent: (percent) => {
+    if (isNaN(parseInt(percent))) {
+      return false;
+    } else {
+      return true;
+    }
+  },
   
   addWallet: () => {
     var num = $("#wallets > div").length/2;
