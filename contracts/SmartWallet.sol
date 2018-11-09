@@ -77,4 +77,13 @@ contract SmartWallet {
       walletAddress[i].transfer(amount.mul(percentageShare[i]).div(100));
     }
   }
+
+  // Method to check if a wallet address was passed
+  function isContractAddress(address _addr) public view returns (bool isContract) {
+    uint32 size;
+    assembly {
+      size := extcodesize(_addr)
+    }
+    return (size > 0);
+  }
 }
