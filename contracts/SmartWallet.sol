@@ -25,7 +25,7 @@ contract SmartWallet {
   // Restrict few method calls to only the
   // owner of this smart contract.
   modifier onlyBy(address _account) {
-    require(msg.sender == _account);
+    require(msg.sender == _account, "Owner Account Required");
     _;
   }
 
@@ -69,7 +69,7 @@ contract SmartWallet {
   // Method to receive the amount and immediately transfer
   // it to the wallets configured based on the percentage.
   function() public payable {
-    require(totalWallets != 0);
+    require(totalWallets != 0, "Smart Wallet Not Configured");
     uint amount = msg.value;
 
     for (uint i = 0; i < totalWallets; i++) {
