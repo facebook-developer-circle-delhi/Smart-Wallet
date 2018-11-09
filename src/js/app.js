@@ -65,6 +65,43 @@ App = {
       });
   },
   
+  configure: async () => {
+    var num = $("#wallets > div").length/2;
+    var walletAddress = [];
+    var walletPercent = [];
+
+    for(var i=0; i < num; i++) {
+      console.log("Line 127", await App.validateAddress($('#w'+i).val()));
+      if (await App.validateAddress($('#w'+i).val()) === true) {
+       walletAddress[i] = web3.toChecksumAddress($('#w'+i).val());
+      } else {
+        return false;
+      }
+
+      if (App.validatePercent($('#p'+i).val())) {
+        walletPercent[i] = parseInt($('#p'+i).val());
+      } else {
+        return false;
+      }
+      
+    }
+
+    if (!App.checkTotal(walletPercent)) {
+      $('#percentError').show()
+      console.log("Total Percentage Isn't 100");
+      return false;
+    }
+
+    console.log(walletPercent);
+    console.log(walletAddress);
+    App.contracts.SmartWallet.deployed()
+      .then((instance) => {
+        return instance.configureShare(num, walletPercent, walletAddress, {from : App.account, gas: 500000});
+      });
+    $('#successMsg').show();
+  },
+  
+  
   addWallet: () => {
     var num = $("#wallets > div").length/2;
     $('#wallets').append('<div class="form-group"><label for="w'+num+'">Wallet address</label> <input type="text" class="form-control" id="w'+num+'" name="walletAddress[]" placeholder="Enter the ethereum wallet address"></div> &nbsp; <div class="form-group"><label for="p'+num+'">Wallet share(%)</label> <input type="number" class="form-control" id="p'+num+'" placeholder="Enter the percent share" max="100" pattern="[0-9]+([\.,][0-9]+)?" step="5"></div> <hr>');
