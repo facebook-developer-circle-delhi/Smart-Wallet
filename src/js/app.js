@@ -37,6 +37,7 @@ App = {
     $.getJSON('SmartWallet.json', (smartWalletArtifact) => {
       App.contracts.SmartWallet = TruffleContract(smartWalletArtifact);
       App.contracts.SmartWallet.setProvider(App.web3Provider);
+      App.eventListener();
       return App.getConfiguration();
     })
   },
@@ -150,6 +151,47 @@ App = {
     } else {
       return false;
     }
+  },
+  
+  eventListener: () => {
+    App.contracts.SmartWallet.deployed()
+      .then((instance) => {
+        instance.Deposited({}, {}).watch((err, events) => {
+          if (!err) {
+            $('#events').append('<li class="list-group-item">Sent '+
+              web3.fromWei(events.args._amount, "ether") + 'ETH to '+
+              events.args._to + ' which is ' +
+              events.args._percent + '% of ' +
+              web3.fromWei(events.args._total, "ether")
+              +'ETH</li>'
+            );
+          } else {
+            console.log(err);
+          }
+        });
+
+        instance.configurationFailure({}, {}).watch((err, events) => {
+          if (!err) {
+            $('#events').append('<li class="list-group-item">Error: '+
+              events.args.msg
+              +'</li>'
+            );
+          } else {
+            console.log(err);
+          }
+        });
+
+        instance.configurationSuccessful({}, {}).watch((err, events) => {
+          if (!err) {
+            $('#events').append('<li class="list-group-item">Success: '+
+              events.args.msg
+              +'</li>'
+            );
+          } else {
+            console.log(err);
+          }
+        });
+      });
   },
   
   addWallet: () => {
