@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Shubhamoy Chakrabarty">
+  <meta name="theme-color" content="#ff9933">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="logo.png" type="image/png">
+  <title>Smart Wallet :: Configuration Panel</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    #logo{margin: 0 auto;display: block; width:20%}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" id="logo" alt="Smart Wallet">
+    <h3 class="text-center">Configuration Panel</h3>
+    <div class="col-lg-12" id="article-list">
+      <div class="row">
+        <div class="col-lg-12">
+          <hr />
+          <small class="h5 welcome"><strong>Active Account</strong>: <span id="account"></span></small>
+          <small class="h5 welcome pull-right"><strong>Account Balance</strong>: <span id="accountBalance"></span></small>
+          <hr />
+          <div id="config">
+            <h3>Existing Configuration</h3>
+            <table class="table table-responsive table-striped" id="configTable">
+              <thead>
+                <tr>
+                  <th>Wallet Address</th>
+                  <th>Percent Share</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="panel-title">
+            <h3 class="modal-title">Add wallet address and percent share</h4>
+              <hr>
+              <div class="col-lg-12">
+                <form class="form-inline">
+                  <div id="wallets">
+                    <div class="form-group">
+                      <label for="w0">Wallet address</label>
+                      <input type="text" class="form-control" name="walletAddress[]" id="w0" placeholder="Enter the wallet address">
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                      <label for="p0">Percentage share</label>
+                      <input type="number" class="form-control" id="p0" placeholder="Enter the percent share" pattern="[0-9]+([\.,][0-9]+)?" max="100" step="5">
+                    </div>
+                    <hr>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="addWallet">Add Wallet</button>
+                  <button type="button" class="btn btn-danger" id="removeWallet">Remove Wallet</button>
+                  <hr>
+                  <div class="alert alert-danger" id="percentError" style="display:none">Total percentage doesn't add to 100</div>
+                  <div class="alert alert-success" id="successMsg" style="display:none">Configuration Set</div>          
+                  <button type="button" class="btn btn-primary btn-success btn-block">Configure</button>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="list-group" id="events">
+    </ul>
+  </div>
+  <div id="footer" class="container">
+    &nbsp;
+    <p class="text-muted text-center" credit>&copy; 2018 Smart Wallet</p>
+    &nbsp;
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+  <script src="js/truffle-contract.min.js"></script>
+</body>
+</html>
