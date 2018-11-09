@@ -101,6 +101,20 @@ App = {
     $('#successMsg').show();
   },
   
+  validateAddress: async (address) => {
+    if (web3.isAddress(address)) {
+      let check = await App.isNotContractAddress(address);
+
+      if (check === true) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  },
+
   
   addWallet: () => {
     var num = $("#wallets > div").length/2;
