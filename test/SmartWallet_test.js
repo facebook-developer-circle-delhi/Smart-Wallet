@@ -37,4 +37,25 @@ contract('SmartWallet', (accounts) => {
 				assert(true);
 			})
 	});
+
+	it("should trigger an event", () => {
+		return SmartWallet.deployed()
+			.then((instance) => {
+				smartWalletInstance = instance;
+				return smartWalletInstance
+					.configureShare(totalWallets, 
+						[percentShare1, percentShare2], 
+						[wallet1, wallet2]);
+			})
+			.then((receipt) => {
+				assert.equal(receipt.logs.length, 
+										 1, 
+										 "Event wasn't triggered"
+										);
+				assert.equal(receipt.logs[0].event, 
+										 "configurationSuccessful", 
+										 "A different event was fired"
+										 );
+			})
+	});
 });
