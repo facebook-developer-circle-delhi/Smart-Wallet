@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet/issues"
   },
-  "homepage": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet#readme"
+  "homepage": "https://github.com/facebook-developer-circle-delhi/Smart-Wallet#readme",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.0.0"
+  }
 }
