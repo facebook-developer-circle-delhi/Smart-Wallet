@@ -42,4 +42,19 @@ contract SmartWallet {
 
     emit configurationSuccessful("Configuration Successful");
   }
+
+  // Method to check whether the total percentage doesn't exceed 100
+  function checkPercentArray(uint[20] _percent) private view returns(bool) {
+    uint checkPercent = 0;
+    
+    for (uint i = 0; i < totalWallets; i++) {
+      checkPercent += _percent[i];
+    }
+
+    if (checkPercent != 100) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
