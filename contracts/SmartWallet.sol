@@ -81,6 +81,7 @@ contract SmartWallet {
   // Method to check if a wallet address was passed
   function isContractAddress(address _addr) public view returns (bool isContract) {
     uint32 size;
+    /* solium-disable-next-line */
     assembly {
       size := extcodesize(_addr)
     }
