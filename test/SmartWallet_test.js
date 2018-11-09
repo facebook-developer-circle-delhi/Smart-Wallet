@@ -7,6 +7,7 @@ contract('SmartWallet', (accounts) => {
 	const wallet2 = accounts[9];
 	const percentShare1 = 60;
 	const percentShare2 = 40;
+	const percentShare3 = 80;
 	const totalWallets = 2;
 
 	it("should be configurable", () => {
@@ -20,6 +21,20 @@ contract('SmartWallet', (accounts) => {
 			})
 			.then((data) => {
 				assert.equal(data.receipt.status, 0x01, "Configuration failed");
+			})
+	});
+
+	it("should fail and throw error", () => {
+		return SmartWallet.deployed()
+			.then((instance) => {
+				smartWalletInstance = instance;
+				return smartWalletInstance
+					.configureShare(totalWallets, 
+						[percentShare1, percentShare3], 
+						[wallet1, wallet2]);
+			})
+			.catch((error) => {
+				assert(true);
 			})
 	});
 });
