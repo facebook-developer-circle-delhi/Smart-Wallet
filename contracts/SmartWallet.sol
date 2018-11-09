@@ -57,4 +57,9 @@ contract SmartWallet {
       return true;
     }
   }
+
+  // Method to retrieve the configuration
+  function getConfiguration() public view onlyBy(owner) returns(uint[20], address[20], uint) {
+    return (percentageShare, walletAddress, totalWallets);
+  }
 }
