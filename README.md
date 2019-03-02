@@ -16,3 +16,6 @@ An ethereum based smart contract that splits the amount sent to it. It is config
 1. `$> npm install`
 2. `$> truffle migrate --network ganache`
 3. `$> npm run dev`
+
+## Author
+[Shubhamoy Chakrabarty](https://github.com/shubhamoy)
